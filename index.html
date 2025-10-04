@@ -60,7 +60,7 @@
       top: 0;
       left: 0;
       width: 100%;
-      z-index: 1000; /* Above all content */
+      z-index: 1100; /* above overlay */
       background: transparent; /* glass lives on inner nav */
       border-bottom: 0; box-shadow: none;
     }
@@ -86,7 +86,7 @@
     }
     nav a {
       color: var(--text);
-      padding: 8px 12px; /* keep nav item shape subtle inside pill */
+      padding: 10px 14px; /* larger tap target */
       border-radius: 8px;
       transition: background .2s ease, color .2s ease;
     }
@@ -144,22 +144,12 @@
       position: relative;
       background: #0b0f19; /* black-ish */
       color: var(--text);
-      border: 1px solid rgba(148,163,184,.18); /* base subtle border under animation */
+      border: 1px solid var(--border);
       border-radius: 999px;
       overflow: hidden; /* clip animated border corners */
       isolation: isolate; /* ensure pseudo is scoped */
     }
-    .btn::before {
-      content: "";
-      position: absolute; inset: 0; border-radius: inherit; padding: 1.5px; /* border thickness */
-      background: conic-gradient(from var(--a), var(--brand), var(--brand-2), var(--accent), var(--brand-2), var(--brand));
-      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      -webkit-mask-composite: xor; /* Safari */
-      mask-composite: exclude;      /* Others */
-      animation: btn-rotate 6s linear infinite;
-      pointer-events: none;
-    }
-    @keyframes btn-rotate { to { --a: 360deg; } }
+    .btn::before { display: none !important; content: none !important; animation: none !important; }
     .btn-primary { background: #0b0f19; border-color: rgba(148,163,184,.18); box-shadow: 0 6px 18px rgba(0,0,0,.35); }
     .btn:hover { transform: translateY(-1px); border-color: var(--brand); }
     .btn:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--ring), 0 6px 18px rgba(0,0,0,.35); }
@@ -249,14 +239,45 @@
     }
 
     /* Responsive */
-    @media (max-width: 900px) {
+    @media (max-width: 1024px) {
       .hero-inner { grid-template-columns: 1fr; }
       .grid-3 { grid-template-columns: repeat(2, 1fr); }
       .grid-4 { grid-template-columns: repeat(2, 1fr); }
     }
-    @media (max-width: 600px) {
-      nav ul { display: none; } /* keep simple for now */
+    /* Mobile/tablet header/menu up to 1024px */
+    @media (max-width: 1024px) {
+      .nav-toggle { display: inline-flex !important; cursor: pointer; }
+      header nav ul { display: none; }
+      header.nav-open nav ul {
+        display: flex !important;
+        position: fixed;
+        left: 12px; right: 12px; top: 76px;
+        flex-direction: column; gap: 6px;
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 12px;
+        box-shadow: 0 18px 40px rgba(0,0,0,.45);
+        z-index: 1101; /* above overlay but within header */
+        max-height: calc(100vh - 110px);
+        overflow-y: auto;
+      }
+      header.nav-open nav a { padding: 12px 14px; border-radius: 8px; }
+
+      /* Mobile spacing */
+      .hero { padding: 56px 0 20px; }
+      .subtitle { font-size: 15px; }
+      .chip { padding: 5px 9px; font-size: 11px; }
       .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    }
+
+    /* Remove conflicting 600px rule hiding nav; keep other adjustments */
+    @media (max-width: 600px) {
+      /* nav ul hidden above already */
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+      .card-img { height: 90px; }
+      .cta { gap: 10px; }
+      .cta .btn { flex: 1 1 auto; }
     }
 
     /* Accessibility: focus */
@@ -290,21 +311,24 @@
     .nav-toggle:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--ring); }
     .nav-toggle svg { width: 18px; height: 18px; }
 
+    /* Dim overlay when mobile menu is open */
+    .nav-overlay {
+      position: fixed; inset: 0;
+      background: rgba(2,6,23,.55);
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+      z-index: 1001;
+      opacity: 0; transition: opacity .2s ease;
+    }
+    .nav-overlay.show { opacity: 1; }
+    .no-scroll { overflow: hidden; }
+
     @media (max-width: 700px) {
-      .nav-toggle { display: inline-flex; }
-      header nav ul { display: none; }
-      header.nav-open nav ul {
-        display: flex !important;
-        position: absolute;
-        right: 16px; top: 68px;
-        flex-direction: column; gap: 8px;
-        background: rgba(17,24,39,.98);
-        border: 1px solid var(--border);
-        border-radius: 10px;
-        padding: 10px;
-        box-shadow: 0 12px 30px rgba(0,0,0,.35);
-      }
-      header.nav-open nav a { padding: 10px 12px; }
+      header nav { display: none !important; }
+      .nav-toggle { display: none !important; }
+      header .nav { justify-content: center; }
+      .brand { font-weight: 700; font-size: 18px; letter-spacing: .2px; }
+      .contact-list { grid-template-columns: 1fr; }
     }
 
     /* External link indicator for project titles */
@@ -349,6 +373,37 @@
     @media (prefers-reduced-motion: reduce) {
       .star { animation: none !important; }
     }
+
+    /* Contact section refinements */
+    .contact-card { display: grid; gap: 16px; }
+    .contact-header h3 { margin: 0; font-size: 18px; }
+    .contact-header .subtitle { margin: 6px 0 0; }
+    .contact-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+    .contact-item { display: flex; align-items: center; gap: 10px; padding: 10px; border: 1px solid var(--border); border-radius: 10px; background: #0b1326; }
+    .contact-icon { width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(59,130,246,.12); color: var(--brand); border: 1px solid rgba(59,130,246,.25); flex: 0 0 28px; }
+    .contact-text { display: flex; flex-direction: column; }
+    .contact-text small { color: var(--muted); font-size: 12px; line-height: 1; }
+    .contact-text a { color: var(--text); }
+
+    /* Fix: prevent long contact values (e.g., phone) from overflowing their card */
+    .contact-item, .contact-text { min-width: 0; }
+    .contact-text a, .contact-text span {
+      overflow-wrap: anywhere; /* allow breaking long, unspaced strings */
+      word-break: break-word;  /* fallback */
+      white-space: normal;     /* ensure wrapping */
+    }
+
+    /* Contact list: force single column across all viewports */
+    .contact-list { grid-template-columns: 1fr !important; }
+
+    /* Skills section */
+    .skill-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+    .skill-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px; border: 1px solid var(--border); border-radius: 10px; background: #0b1326; }
+    .skill-icon { width: 24px; height: 24px; flex: 0 0 24px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(34,197,94,.12); color: var(--accent); border: 1px solid rgba(34,197,94,.25); }
+    .skill-text { display: flex; flex-direction: column; gap: 2px; }
+    .skill-text strong { font-size: 14px; line-height: 1.2; }
+    .skill-text span { color: var(--muted); font-size: 13px; line-height: 1.3; }
+    @media (max-width: 700px) { .skill-list { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -460,19 +515,57 @@
 
     <section id="skills">
       <h2 class="section-title">Skills</h2>
-      <div class="grid grid-3">
-        <div class="panel">
-          <strong>Delivery</strong>
-          <p class="subtitle">Scrum ceremonies, Sprint Planning, Retrospectives, RAID, Execution tracking</p>
-        </div>
-        <div class="panel">
-          <strong>Tooling</strong>
-          <p class="subtitle">Bordio, Notion, Documentation & Reporting</p>
-        </div>
-        <div class="panel">
-          <strong>Technical</strong>
-          <p class="subtitle">QA coordination, Issue triage, Security awareness, CSE background</p>
-        </div>
+      <div class="panel">
+        <ul class="skill-list">
+          <li class="skill-item">
+            <span class="skill-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+            <div class="skill-text"><strong>Scrum Meetings</strong><span>Facilitated daily scrums to monitor progress and ensure team alignment.</span></div>
+          </li>
+          <li class="skill-item">
+            <span class="skill-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+            <div class="skill-text"><strong>Project Planning & Execution</strong><span>Established scope, timelines, and deliverables, ensuring timely execution.</span></div>
+          </li>
+          <li class="skill-item">
+            <span class="skill-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+            <div class="skill-text"><strong>Agile Leadership</strong><span>Led stand-ups, sprint planning, and retrospectives to support Agile workflows.</span></div>
+          </li>
+          <li class="skill-item">
+            <span class="skill-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+            <div class="skill-text"><strong>Team Collaboration</strong><span>Partnered with developers, QA, designers, and stakeholders to align on goals.</span></div>
+          </li>
+          <li class="skill-item">
+            <span class="skill-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+            <div class="skill-text"><strong>Client Communication</strong><span>Handled client interactions, gathered requirements, and shared updates.</span></div>
+          </li>
+          <li class="skill-item">
+            <span class="skill-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+            <div class="skill-text"><strong>Quality Assurance & Testing</strong><span>Coordinated QA efforts to uphold high-quality deliverables.</span></div>
+          </li>
+          <li class="skill-item">
+            <span class="skill-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+            <div class="skill-text"><strong>Risk Management & Issue Resolution</strong><span>Identified risks and applied effective mitigation strategies.</span></div>
+          </li>
+          <li class="skill-item">
+            <span class="skill-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+            <div class="skill-text"><strong>Project Tracking</strong><span>Tracked progress using Bordio, Notion, and other project management tools.</span></div>
+          </li>
+          <li class="skill-item">
+            <span class="skill-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+            <div class="skill-text"><strong>Technical Support</strong><span>Supported developers in resolving issues and optimizing workflows.</span></div>
+          </li>
+          <li class="skill-item">
+            <span class="skill-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+            <div class="skill-text"><strong>Process Improvement</strong><span>Implemented best practices to enhance workflows and team efficiency.</span></div>
+          </li>
+          <li class="skill-item">
+            <span class="skill-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+            <div class="skill-text"><strong>Documentation & Reporting</strong><span>Managed project documentation and delivered reports and KPIs.</span></div>
+          </li>
+          <li class="skill-item">
+            <span class="skill-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+            <div class="skill-text"><strong>Mentorship & Team Building</strong><span>Provided guidance and fostered growth among team members.</span></div>
+          </li>
+        </ul>
       </div>
     </section>
 
@@ -483,23 +576,23 @@
           <div>
             <h3><a href="https://www.deedsign.com/" target="_blank" rel="noopener">DeedSign</a></h3>
             <p class="subtitle">Role: TPM/PM</p>
-            <p>Planned and coordinated delivery; aligned scope and stakeholders; tracked execution and risks.</p>
+            <p>DeedSign is an easy-to-use, modern, and secure Cloud-based eSignature platform to simplify and automate document workflows for business functions.</p>
           </div>
           <img class="project-logo" src="assets/DeedSign.jpeg" alt="DeedSign logo/thumbnail" loading="lazy" decoding="async" />
         </article>
         <article class="panel project">
           <div>
-            <h3><a href="https://apps.shopify.com/store-flow-workflow-automation" target="_blank" rel="noopener">Flowfy — Shopify App</a></h3>
+            <h3><a href="https://apps.shopify.com/store-flow-workflow-automation" target="_blank" rel="noopener">Flowfy</a></h3>
             <p class="subtitle">Role: TPM/PM</p>
-            <p>Supported cross-functional team; managed timelines and communications; facilitated QA/testing.</p>
+            <p>Flowfy simplifies automation by easily integrating your store with apps like crm, email marketing etc. With Flowfy, you can easily connect your store with your favorite apps and tools.</p>
           </div>
           <img class="project-logo" src="assets/Flowfy.jpeg" alt="Flowfy logo/thumbnail" loading="lazy" decoding="async" />
         </article>
         <article class="panel project">
           <div>
-            <h3><a href="https://apps.shopify.com/syncora-backup-restore" target="_blank" rel="noopener">Syncora: Backup & Restore — Shopify App</a></h3>
+            <h3><a href="https://apps.shopify.com/syncora-backup-restore" target="_blank" rel="noopener">Syncora: Backup & Restore</a></h3>
             <p class="subtitle">Role: TPM/PM</p>
-            <p>Oversaw execution, risk management, and change coordination for releases.</p>
+            <p>Syncora: Backup & Restore keeps your Shopify store safe with real-time, automatic backups of products, orders, themes, blogs, videos, files, and more.</p>
           </div>
           <img class="project-logo" src="assets/Syncora.jpeg" alt="Syncora logo/thumbnail" loading="lazy" decoding="async" />
         </article>
@@ -507,7 +600,7 @@
           <div>
             <h3>helloDeutsch</h3>
             <p class="subtitle">Role: TPM/PM</p>
-            <p>Coordinated delivery and stakeholder updates; maintained documentation and KPIs.</p>
+            <p>helloDeutsch is a mobile application designed for learning the German language.</p>
           </div>
           <img class="project-logo" src="assets/helloDeutsch.jpeg" alt="helloDeutsch logo/thumbnail" loading="lazy" decoding="async" />
         </article>
@@ -515,7 +608,7 @@
           <div>
             <h3><a href="https://www.bdfamily.net/" target="_blank" rel="noopener">Bangladesh Family</a></h3>
             <p class="subtitle">Role: TPM/PM</p>
-            <p>Managed planning, resource coordination, and quality controls.</p>
+            <p>Bangladesh Family Platform — a unique mobile application and website serving as a trusted local information hub for every upazila and district in Bangladesh.</p>
           </div>
           <img class="project-logo" src="assets/Bangladesh%20Family.jpeg" alt="Bangladesh Family logo/thumbnail" loading="lazy" decoding="async" />
         </article>
@@ -523,7 +616,7 @@
           <div>
             <h3><a href="https://timetics.ai/" target="_blank" rel="noopener">Timetics | Arraytics</a></h3>
             <p class="subtitle">Role: TPM/PM</p>
-            <p>Facilitated Agile workflows, issue resolution, and reporting cadence.</p>
+            <p>Streamline the planning of appointments, booking, and business activities with features like automated scheduling, seating arrangements, event management, and the power of AI.</p>
           </div>
           <img class="project-logo" src="assets/Timetics.jpeg" alt="Timetics logo/thumbnail" loading="lazy" decoding="async" />
         </article>
@@ -569,12 +662,49 @@
     <section id="contact">
       <h2 class="section-title">Contact</h2>
       <div class="panel">
-        <p>
-          Email: <a href="mailto:amin.shuzan@gmail.com">amin.shuzan@gmail.com</a> •
-          Phone: <a href="tel:+8801521467334">+8801521467334</a> •
-          LinkedIn: <a href="https://www.linkedin.com/in/amin-nurul-md" target="_blank" rel="noopener">/in/amin-nurul-md</a> •
-          Location: Dhaka, Bangladesh
-        </p>
+        <p>Get in touch:</p>
+        <ul class="contact-list">
+          <li class="contact-item">
+            <span class="contact-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg>
+            </span>
+            <div class="contact-text">
+              <small>Email</small>
+              <a href="mailto:amin.shuzan@gmail.com">amin.shuzan@gmail.com</a>
+            </div>
+          </li>
+          <li class="contact-item">
+            <span class="contact-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.11 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.89.34 1.76.66 2.59a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.49-1.23a2 2 0 0 1 2.11-.45c.83.32 1.7.54 2.59.66A2 2 0 0 1 22 16.92z"/></svg>
+            </span>
+            <div class="contact-text">
+              <small>Phone</small>
+              <a href="tel:+8801521467334">+8801521467334</a>
+            </div>
+          </li>
+          <li class="contact-item">
+            <span class="contact-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1-11.31 3.16L1 13l1.84-3.69A6 6 0 1 1 16 8z"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/></svg>
+            </span>
+            <div class="contact-text">
+              <small>LinkedIn</small>
+              <a href="https://www.linkedin.com/in/amin-nurul-md" target="_blank" rel="noopener">/in/amin-nurul-md</a>
+            </div>
+          </li>
+          <li class="contact-item">
+            <span class="contact-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </span>
+            <div class="contact-text">
+              <small>Location</small>
+              <span>Dhaka, Bangladesh</span>
+            </div>
+          </li>
+        </ul>
+        <div class="cta">
+          <a class="btn btn-primary" href="mailto:amin.shuzan@gmail.com">Email me</a>
+          <a class="btn" href="https://www.linkedin.com/in/amin-nurul-md" target="_blank" rel="noopener">Connect on LinkedIn</a>
+        </div>
       </div>
     </section>
   </main>
@@ -682,27 +812,62 @@
       sections.forEach(s => so.observe(s));
     });
 
-    // Mobile navigation toggle (focus + escape to close)
+    // Mobile navigation toggle (overlay + scroll lock + escape to close)
     const headerEl = document.querySelector('header');
     const toggleBtn = document.querySelector('.nav-toggle');
     const navMenu = document.getElementById('nav-menu');
+    let overlayEl = null;
+
     if (toggleBtn && headerEl && navMenu) {
       const firstNavLink = navMenu.querySelector('a');
+      const createOverlay = () => {
+        if (overlayEl) return overlayEl;
+        overlayEl = document.createElement('div');
+        overlayEl.className = 'nav-overlay show';
+        overlayEl.addEventListener('click', () => closeMenu());
+        document.body.appendChild(overlayEl);
+        return overlayEl;
+      };
+      const destroyOverlay = () => {
+        if (!overlayEl) return;
+        overlayEl.remove();
+        overlayEl = null;
+      };
+      const setMenuAria = (open) => {
+        toggleBtn.setAttribute('aria-expanded', String(open));
+        navMenu.setAttribute('aria-hidden', String(!open));
+      };
       const closeMenu = () => {
         headerEl.classList.remove('nav-open');
-        toggleBtn.setAttribute('aria-expanded', 'false');
+        setMenuAria(false);
+        destroyOverlay();
+        document.body.classList.remove('no-scroll');
         toggleBtn.focus();
       };
+      setMenuAria(false);
       toggleBtn.addEventListener('click', () => {
         const open = headerEl.classList.toggle('nav-open');
-        toggleBtn.setAttribute('aria-expanded', String(open));
-        if (open && firstNavLink) { firstNavLink.focus(); }
+        setMenuAria(open);
+        if (open) {
+          createOverlay();
+          document.body.classList.add('no-scroll');
+          if (firstNavLink) { firstNavLink.focus(); }
+        } else {
+          destroyOverlay();
+          document.body.classList.remove('no-scroll');
+        }
       });
       navMenu.addEventListener('click', (e) => {
         if (e.target.closest('a')) { closeMenu(); }
       });
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && headerEl.classList.contains('nav-open')) { closeMenu(); }
+      });
+      // Close if viewport resized to desktop
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 1024 && headerEl.classList.contains('nav-open')) {
+          closeMenu();
+        }
       });
     }
   </script>
