@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MD. NURUL AMIN | Technical Project Manager</title>
+  <meta name="description" content="Technical Project Manager with 2+ years' experience in Agile delivery, risk management, and stakeholder collaboration. Based in Dhaka." />
+  <link rel="icon" href="assets/profile.jpg" />
+  <meta property="og:title" content="MD. NURUL AMIN | Technical Project Manager" />
+  <meta property="og:description" content="Technical Project Manager with 2+ years' experience in Agile delivery, risk management, and stakeholder collaboration. Based in Dhaka." />
+  <meta property="og:image" content="assets/profile.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <style>
+    :root {
+      --bg: #0f172a;          /* slate-900 */
+      --panel: #111827;       /* gray-900 */
+      --muted: #94a3b8;       /* slate-400 */
+      --text: #e5e7eb;        /* gray-200 */
+      --brand: #3b82f6;       /* blue-500 */
+      --brand-2: #2563eb;     /* blue-600 */
+      --accent: #22c55e;      /* green-500 */
+      --card: #1f2937;        /* gray-800 */
+      --border: #334155;      /* slate-700 */
+      --shadow: 0 6px 24px rgba(0,0,0,.35);
+      --radius: 12px;
+      --container: 1100px;
+      --space: 64px;
+      --ring: rgba(59,130,246,.35);
+      --glass-bg: rgba(15,23,42,.55);
+      --glass-border: rgba(255,255,255,.08);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background: radial-gradient(1200px 800px at 10% -10%, #1e293b 0%, transparent 60%) no-repeat,
+                  radial-gradient(1000px 700px at 120% 10%, #0b1020 0%, transparent 50%) no-repeat,
+                  var(--bg);
+      line-height: 1.55;
+      padding-top: 80px; /* accommodate fixed, rounded header */
+    }
+
+    a { color: var(--brand); text-decoration: none; text-underline-offset: 3px; }
+    a:hover { color: var(--brand-2); }
+
+    .container {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    header {
+      position: fixed; /* Always visible */
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000; /* Above all content */
+      background: transparent; /* glass lives on inner nav */
+      border-bottom: 0; box-shadow: none;
+    }
+    header .container { width: 100%; padding: 0 12px; }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      margin: 8px auto; /* center the pill */
+      padding: 0 12px;
+      border-radius: 999px; /* iOS pill */
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04)) , var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: saturate(1.2) blur(14px);
+      -webkit-backdrop-filter: saturate(1.2) blur(14px);
+      box-shadow: 0 8px 30px rgba(0,0,0,.25);
+      width: 100%;
+      max-width: 1100px; /* fixed desired width */
+    }
+    nav ul {
+      display: flex; gap: 18px; list-style: none; margin: 0; padding: 0;
+    }
+    nav a {
+      color: var(--text);
+      padding: 8px 12px; /* keep nav item shape subtle inside pill */
+      border-radius: 8px;
+      transition: background .2s ease, color .2s ease;
+    }
+    nav a:hover { background: rgba(148,163,184,.12); }
+    nav a.active {
+      background: rgba(148,163,184,.18);
+      color: var(--brand);
+      border: 1px solid var(--border);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 72px 0 32px;
+    }
+    .hero-inner {
+      display: grid;
+      gap: 24px;
+      align-items: center;
+      grid-template-columns: 1.1fr .9fr;
+    }
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.15;
+    }
+    .subtitle {
+      color: var(--muted);
+      margin: 0 0 18px;
+      font-size: 16px;
+    }
+    .chips {
+      display: flex; flex-wrap: wrap; gap: 10px; margin: 8px 0 20px;
+    }
+    .chip {
+      background: rgba(148,163,184,.12);
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      transition: transform .15s ease, border-color .2s ease, background .2s ease;
+    }
+    .chip:hover { transform: translateY(-1px); border-color: var(--brand); background: rgba(148,163,184,.18); }
+    .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 6px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: var(--card);
+      box-shadow: var(--shadow);
+      transition: transform .05s ease, background .2s ease, border-color .2s ease;
+      will-change: transform;
+      position: relative;
+      background: #0b0f19; /* black-ish */
+      color: var(--text);
+      border: 1px solid rgba(148,163,184,.18); /* base subtle border under animation */
+      border-radius: 999px;
+      overflow: hidden; /* clip animated border corners */
+      isolation: isolate; /* ensure pseudo is scoped */
+    }
+    .btn::before {
+      content: "";
+      position: absolute; inset: 0; border-radius: inherit; padding: 1.5px; /* border thickness */
+      background: conic-gradient(from var(--a), var(--brand), var(--brand-2), var(--accent), var(--brand-2), var(--brand));
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; /* Safari */
+      mask-composite: exclude;      /* Others */
+      animation: btn-rotate 6s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes btn-rotate { to { --a: 360deg; } }
+    .btn-primary { background: #0b0f19; border-color: rgba(148,163,184,.18); box-shadow: 0 6px 18px rgba(0,0,0,.35); }
+    .btn:hover { transform: translateY(-1px); border-color: var(--brand); }
+    .btn:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--ring), 0 6px 18px rgba(0,0,0,.35); }
+    @media (prefers-reduced-motion: reduce) {
+      .btn::before { animation: none; }
+    }
+
+    .hero-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+    .hero-card h3 { margin: 0 0 8px; font-size: 16px; }
+    .hero-metrics {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 10px;
+    }
+    .metric {
+      background: #0b1326;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center;
+      transition: transform .2s ease, border-color .2s ease;
+    }
+    .metric:hover { transform: translateY(-1px); border-color: var(--brand); }
+    .metric .value { font-size: 20px; font-weight: 700; }
+    .metric .label { color: var(--muted); font-size: 12px; }
+
+    /* Sections */
+    section { 
+      padding: 32px 0; 
+      scroll-margin-top: 80px; /* Prevent anchor jump hiding content under header */
+    }
+    .section-title {
+      font-size: 22px;
+      margin: 0 0 14px;
+      position: relative;
+    }
+    .section-title::after {
+      content: "";
+      position: absolute; left: 0; bottom: -8px;
+      width: 56px; height: 3px;
+      background: linear-gradient(90deg, var(--brand), var(--accent));
+      border-radius: 2px;
+    }
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: var(--shadow);
+      transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+      position: relative;
+    }
+    .panel::before { display: none !important; content: none !important; }
+    .panel:hover { transform: translateY(-2px); border-color: var(--brand); box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+
+    /* Grids */
+    .grid { display: grid; gap: 14px; }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+    /* Lists */
+    .timeline { list-style: none; padding: 0; margin: 0; position: relative; }
+    .timeline li { padding: 12px; border-left: 2px solid var(--border); margin-left: 10px; position: relative; }
+    .timeline li::marker { content: none; }
+    .timeline li::before {
+      content: "";
+      position: absolute; left: -7px; top: 18px;
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--brand);
+      box-shadow: 0 0 0 3px rgba(59,130,246,.2);
+    }
+    .timeline .role { font-weight: 600; }
+    .timeline .meta { color: var(--muted); font-size: 13px; }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      margin-top: 40px;
+      padding: 18px 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .grid-3 { grid-template-columns: repeat(2, 1fr); }
+      .grid-4 { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      nav ul { display: none; } /* keep simple for now */
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    }
+
+    /* Accessibility: focus */
+    a:focus-visible, nav a:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--ring); border-color: var(--brand); border-radius: 8px; }
+
+    /* Reveal animation */
+    .reveal { opacity: 0; transform: translateY(8px); transition: opacity .5s ease, transform .5s ease; }
+    .reveal.reveal--visible { opacity: 1; transform: none; }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+      html { scroll-behavior: auto; }
+    }
+
+    .avatar { width: 72px; height: 72px; border-radius: 50%; border: 2px solid var(--border); object-fit: cover; margin: 0 0 10px; }
+    .card-img { width: 100%; height: 110px; object-fit: cover; border-radius: 10px; border: 1px solid var(--border); margin-bottom: 10px; background: #0b1326; }
+    @media (max-width: 600px) { .card-img { height: 90px; } }
+
+    /* Mobile navigation toggle */
+    .nav-toggle {
+      display: none;
+      background: var(--card);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      height: 36px; width: 40px;
+      align-items: center; justify-content: center;
+      box-shadow: var(--shadow);
+    }
+    .nav-toggle:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--ring); }
+    .nav-toggle svg { width: 18px; height: 18px; }
+
+    @media (max-width: 700px) {
+      .nav-toggle { display: inline-flex; }
+      header nav ul { display: none; }
+      header.nav-open nav ul {
+        display: flex !important;
+        position: absolute;
+        right: 16px; top: 68px;
+        flex-direction: column; gap: 8px;
+        background: rgba(17,24,39,.98);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px;
+        box-shadow: 0 12px 30px rgba(0,0,0,.35);
+      }
+      header.nav-open nav a { padding: 10px 12px; }
+    }
+
+    /* External link indicator for project titles */
+    h3 a[target="_blank"]::after {
+      content: "\2197"; /* ↗ */
+      font-size: .9em;
+      margin-left: 6px;
+      color: var(--muted);
+    }
+
+    /* Experience company logos */
+    .company { display: grid; grid-template-columns: 36px 1fr; gap: 10px; align-items: start; }
+    .company-logo { width: 32px; height: 32px; border-radius: 6px; object-fit: cover; border: 1px solid var(--border); background: #0b1326; }
+
+    /* Project list layout: image on the right */
+    .project { display: grid; grid-template-columns: 1fr 56px; gap: 12px; align-items: start; }
+    .project-logo { width: 56px; height: 56px; border-radius: 8px; object-fit: cover; border: 1px solid var(--border); background: #0b1326; }
+    @media (max-width: 600px) { .project { grid-template-columns: 1fr 48px; } .project-logo { width: 48px; height: 48px; } }
+
+    /* Print styles */
+    @media print {
+      :root { --text: #111; --muted: #333; --panel: #fff; --border: #ddd; }
+      body { background: #fff; color: #111; padding-top: 0; }
+      header, .cta, .chip, .hero-card img, .card-img, script { display: none !important; }
+      .panel, .timeline li { box-shadow: none !important; }
+      a { color: #0645ad; text-decoration: underline; }
+      .section-title::after, .panel::before { display: none; }
+    }
+
+    /* Starfield background */
+    .stars { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+    .star { position: absolute; border-radius: 50%; background: #fff; opacity: .85;
+      filter: drop-shadow(0 0 6px rgba(255,255,255,.6)) drop-shadow(0 0 12px rgba(59,130,246,.25));
+      animation: twinkle 3.6s ease-in-out infinite;
+      transition: top 12s linear, left 12s linear;
+    }
+    @keyframes twinkle { 0%, 100% { opacity: .35; transform: scale(1); } 50% { opacity: 1; transform: scale(1.35); } }
+
+    /* Ensure content sits above stars */
+    main, footer { position: relative; z-index: 1; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .star { animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Skip to content</a>
+
+  <header>
+    <div class="container nav" role="navigation" aria-label="Primary">
+      <div class="brand">
+        <span class="brand-badge" aria-hidden="true"></span>
+        <span>MD. NURUL AMIN</span>
+      </div>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-controls="nav-menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+      <nav>
+        <ul id="nav-menu">
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <section class="hero">
+      <div class="hero-inner">
+        <div>
+          <h1>Technical Project Manager</h1>
+          <p class="subtitle">
+            Technical Project Manager with 2+ years of experience leading cross-functional teams to deliver complex software on time and within budget. Proficient in Agile methodologies, risk management, and stakeholder collaboration.
+          </p>
+
+          <div class="chips">
+            <span class="chip">Agile & Scrum</span>
+            <span class="chip">Project Planning & Execution</span>
+            <span class="chip">Risk Management</span>
+            <span class="chip">Stakeholder Communication</span>
+            <span class="chip">Bordio / Notion</span>
+          </div>
+
+          <div class="cta">
+            <a class="btn btn-primary" href="#projects">View Projects</a>
+            <a class="btn" href="#contact">Get in Touch</a>
+          </div>
+        </div>
+
+        <aside class="hero-card">
+          <img class="avatar" src="assets/profile.jpg" alt="Portrait of MD. NURUL AMIN" loading="lazy" decoding="async" />
+          <h3>Profile</h3>
+          <div class="hero-metrics">
+            <div class="metric">
+              <div class="value">2+</div>
+              <div class="label">Years experience</div>
+            </div>
+            <div class="metric">
+              <div class="value">Agile</div>
+              <div class="label">Leadership focus</div>
+            </div>
+            <div class="metric">
+              <div class="value">Dhaka, Bangladesh</div>
+              <div class="label">Location</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="about">
+      <h2 class="section-title">About</h2>
+      <div class="panel">
+        <p>
+          I’m MD. NURUL AMIN, a Technical Project Manager based in Dhaka, Bangladesh. I partner with engineering, QA, design, and stakeholders to align scope, timelines, and quality with business goals—driving delivery through Agile practices, risk management, and clear communication.
+        </p>
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2 class="section-title">Experience</h2>
+      <ul class="timeline panel">
+        <li>
+          <div class="company">
+            <img class="company-logo" src="assets/jouleslabs.jpg" alt="JoulesLabs logo" loading="lazy" decoding="async" />
+            <div>
+              <div class="role">Technical Project Manager — JoulesLabs</div>
+              <div class="meta">Nov 2023 – Present • Dhaka</div>
+              <div>Facilitated scrum ceremonies; planned scope, timelines, and deliverables; coordinated QA; managed risks/issues; maintained documentation and KPIs; supported developers and improved processes using Bordio and Notion.</div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="company">
+            <img class="company-logo" src="assets/animoox.png" alt="Animoox Studio logo" loading="lazy" decoding="async" />
+            <div>
+              <div class="role">Project Manager — Animoox Studio</div>
+              <div class="meta">Mar 2023 – Oct 2023 • Dhaka</div>
+              <div>Led cross-functional teams to deliver creative and tech projects on time and within budget; implemented Agile workflows, managed resources and timelines, and ensured stakeholder alignment.</div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section id="skills">
+      <h2 class="section-title">Skills</h2>
+      <div class="grid grid-3">
+        <div class="panel">
+          <strong>Delivery</strong>
+          <p class="subtitle">Scrum ceremonies, Sprint Planning, Retrospectives, RAID, Execution tracking</p>
+        </div>
+        <div class="panel">
+          <strong>Tooling</strong>
+          <p class="subtitle">Bordio, Notion, Documentation & Reporting</p>
+        </div>
+        <div class="panel">
+          <strong>Technical</strong>
+          <p class="subtitle">QA coordination, Issue triage, Security awareness, CSE background</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2 class="section-title">Projects</h2>
+      <div class="grid grid-3">
+        <article class="panel project">
+          <div>
+            <h3><a href="https://www.deedsign.com/" target="_blank" rel="noopener">DeedSign</a></h3>
+            <p class="subtitle">Role: TPM/PM</p>
+            <p>Planned and coordinated delivery; aligned scope and stakeholders; tracked execution and risks.</p>
+          </div>
+          <img class="project-logo" src="assets/DeedSign.jpeg" alt="DeedSign logo/thumbnail" loading="lazy" decoding="async" />
+        </article>
+        <article class="panel project">
+          <div>
+            <h3><a href="https://apps.shopify.com/store-flow-workflow-automation" target="_blank" rel="noopener">Flowfy — Shopify App</a></h3>
+            <p class="subtitle">Role: TPM/PM</p>
+            <p>Supported cross-functional team; managed timelines and communications; facilitated QA/testing.</p>
+          </div>
+          <img class="project-logo" src="assets/Flowfy.jpeg" alt="Flowfy logo/thumbnail" loading="lazy" decoding="async" />
+        </article>
+        <article class="panel project">
+          <div>
+            <h3><a href="https://apps.shopify.com/syncora-backup-restore" target="_blank" rel="noopener">Syncora: Backup & Restore — Shopify App</a></h3>
+            <p class="subtitle">Role: TPM/PM</p>
+            <p>Oversaw execution, risk management, and change coordination for releases.</p>
+          </div>
+          <img class="project-logo" src="assets/Syncora.jpeg" alt="Syncora logo/thumbnail" loading="lazy" decoding="async" />
+        </article>
+        <article class="panel project">
+          <div>
+            <h3>helloDeutsch</h3>
+            <p class="subtitle">Role: TPM/PM</p>
+            <p>Coordinated delivery and stakeholder updates; maintained documentation and KPIs.</p>
+          </div>
+          <img class="project-logo" src="assets/helloDeutsch.jpeg" alt="helloDeutsch logo/thumbnail" loading="lazy" decoding="async" />
+        </article>
+        <article class="panel project">
+          <div>
+            <h3><a href="https://www.bdfamily.net/" target="_blank" rel="noopener">Bangladesh Family</a></h3>
+            <p class="subtitle">Role: TPM/PM</p>
+            <p>Managed planning, resource coordination, and quality controls.</p>
+          </div>
+          <img class="project-logo" src="assets/Bangladesh%20Family.jpeg" alt="Bangladesh Family logo/thumbnail" loading="lazy" decoding="async" />
+        </article>
+        <article class="panel project">
+          <div>
+            <h3><a href="https://timetics.ai/" target="_blank" rel="noopener">Timetics | Arraytics</a></h3>
+            <p class="subtitle">Role: TPM/PM</p>
+            <p>Facilitated Agile workflows, issue resolution, and reporting cadence.</p>
+          </div>
+          <img class="project-logo" src="assets/Timetics.jpeg" alt="Timetics logo/thumbnail" loading="lazy" decoding="async" />
+        </article>
+      </div>
+    </section>
+
+    <section id="education">
+      <h2 class="section-title">Education</h2>
+      <div class="grid grid-2">
+        <div class="panel">
+          <strong>B.Sc. in Computer Science & Engineering</strong>
+          <p class="subtitle">Bangladesh University of Business & Technology (BUBT) • Oct 2017 – Dec 2021 • Mirpur, Dhaka</p>
+        </div>
+        <div class="panel">
+          <strong>Higher Secondary Certificate (Science)</strong>
+          <p class="subtitle">Nilphamari Govt. College • Jun 2012 – Jun 2014 • Nilphamari</p>
+        </div>
+        <div class="panel">
+            <strong>Secondary School Certificate (Science)</strong>
+            <p class="subtitle">Nilphamari Govt. High School • Jan 2007 – Dec 2011 • Nilphamari</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="certs">
+      <h2 class="section-title">Certifications & Training</h2>
+      <div class="grid grid-4">
+        <div class="panel">Software Quality Assurance & Cyber Security — IT Training BD</div>
+      </div>
+    </section>
+
+    <section id="resume">
+      <h2 class="section-title">Resume</h2>
+      <div class="panel">
+        <p>Download my resume:</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="assets/resume%20-%20md.%20nurul%20amin.pdf" download="MD-NURUL-AMIN-Resume.pdf">Download Resume (PDF)</a>
+          <a class="btn" href="assets/resume%20-%20md.%20nurul%20amin.pdf" target="_blank" rel="noopener">View Online</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2 class="section-title">Contact</h2>
+      <div class="panel">
+        <p>
+          Email: <a href="mailto:amin.shuzan@gmail.com">amin.shuzan@gmail.com</a> •
+          Phone: <a href="tel:+8801521467334">+8801521467334</a> •
+          LinkedIn: <a href="https://www.linkedin.com/in/amin-nurul-md" target="_blank" rel="noopener">/in/amin-nurul-md</a> •
+          Location: Dhaka, Bangladesh
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © <span id="year"></span> MD. NURUL AMIN. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Subtle reveal on scroll and active nav highlighting
+    document.addEventListener('DOMContentLoaded', () => {
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Generate twinkling stars background
+      (function generateStars() {
+        const STAR_COUNT = 140; // adjust density here
+        const container = document.createElement('div');
+        container.className = 'stars';
+        container.setAttribute('aria-hidden', 'true');
+        document.body.appendChild(container);
+        for (let i = 0; i < STAR_COUNT; i++) {
+          const s = document.createElement('span');
+          s.className = 'star';
+          const size = Math.random() < 0.8 ? 2 : 3; // mostly small
+          s.style.width = size + 'px';
+          s.style.height = size + 'px';
+          s.style.left = (Math.random() * 100).toFixed(2) + '%';
+          s.style.top = (Math.random() * 100).toFixed(2) + '%';
+          if (!prefersReduced) {
+            s.style.animationDuration = (2 + Math.random() * 4).toFixed(2) + 's';
+            s.style.animationDelay = (Math.random() * 5).toFixed(2) + 's';
+          }
+          container.appendChild(s);
+        }
+
+        // Reposition stars smoothly over time
+        if (!prefersReduced) {
+          const starsList = Array.from(container.children);
+          const scheduleMove = (el) => {
+            const dur = 8 + Math.random() * 10; // 8–18s per hop
+            el.style.transitionDuration = `${dur}s, ${dur}s`;
+            el.style.left = (Math.random() * 100).toFixed(2) + '%';
+            el.style.top = (Math.random() * 100).toFixed(2) + '%';
+            setTimeout(() => scheduleMove(el), dur * 1000);
+          };
+          starsList.forEach((el) => setTimeout(() => scheduleMove(el), Math.random() * 2000));
+        }
+      })();
+
+      // Reveal elements
+      if (!prefersReduced) {
+        const revealEls = document.querySelectorAll('.panel, .section-title, .hero h1, .hero .subtitle, .chip, .metric');
+        const ro = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('reveal--visible');
+              ro.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+        revealEls.forEach(el => { el.classList.add('reveal'); ro.observe(el); });
+      }
+
+      // Active nav on scroll (adds aria-current)
+      const navLinks = Array.from(document.querySelectorAll('header nav a'));
+      const sections = navLinks
+        .map(a => document.querySelector(a.getAttribute('href')))
+        .filter(Boolean);
+
+      const setActive = (link) => {
+        navLinks.forEach(a => {
+          const isActive = a === link;
+          a.classList.toggle('active', isActive);
+          if (isActive) { a.setAttribute('aria-current', 'page'); }
+          else { a.removeAttribute('aria-current'); }
+        });
+      };
+
+      let suppressUntil = 0; // do not override click-highlight during smooth scroll
+      navLinks.forEach(a => {
+        a.addEventListener('click', () => {
+          setActive(a);
+          suppressUntil = Date.now() + 1000; // suppress IO updates for ~1s
+        });
+      });
+
+      const so = new IntersectionObserver((entries) => {
+        if (Date.now() < suppressUntil) return; // keep clicked item active while scrolling
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = '#' + entry.target.id;
+            navLinks.forEach(a => {
+              const isActive = a.getAttribute('href') === id;
+              a.classList.toggle('active', isActive);
+              if (isActive) { a.setAttribute('aria-current', 'page'); }
+              else { a.removeAttribute('aria-current'); }
+            });
+          }
+        });
+      }, { rootMargin: '-50% 0px -45% 0px', threshold: 0.01 });
+      sections.forEach(s => so.observe(s));
+    });
+
+    // Mobile navigation toggle (focus + escape to close)
+    const headerEl = document.querySelector('header');
+    const toggleBtn = document.querySelector('.nav-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    if (toggleBtn && headerEl && navMenu) {
+      const firstNavLink = navMenu.querySelector('a');
+      const closeMenu = () => {
+        headerEl.classList.remove('nav-open');
+        toggleBtn.setAttribute('aria-expanded', 'false');
+        toggleBtn.focus();
+      };
+      toggleBtn.addEventListener('click', () => {
+        const open = headerEl.classList.toggle('nav-open');
+        toggleBtn.setAttribute('aria-expanded', String(open));
+        if (open && firstNavLink) { firstNavLink.focus(); }
+      });
+      navMenu.addEventListener('click', (e) => {
+        if (e.target.closest('a')) { closeMenu(); }
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && headerEl.classList.contains('nav-open')) { closeMenu(); }
+      });
+    }
+  </script>
+</body>
+</html>
