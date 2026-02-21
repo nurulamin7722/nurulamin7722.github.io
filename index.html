@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MD. NURUL AMIN | Technical Project Manager</title>
+  <title>MD. NURUL AMIN | Project Manager</title>
   <meta name="description" content="Technical Project Manager with 2+ years' experience in Agile delivery, risk management, and stakeholder collaboration. Based in Dhaka." />
   <link rel="icon" href="assets/profile.jpg" />
   <meta name="theme-color" content="#0f172a" />
-  <meta property="og:title" content="MD. NURUL AMIN | Technical Project Manager" />
+  <meta property="og:title" content="MD. NURUL AMIN | Project Manager" />
   <meta property="og:description" content="Technical Project Manager with 2+ years' experience in Agile delivery, risk management, and stakeholder collaboration. Based in Dhaka." />
   <meta property="og:image" content="assets/profile.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -306,10 +306,48 @@
     .timeline .role { font-weight: 600; }
     .timeline .meta { color: var(--muted); font-size: 13px; }
     @media (max-width: 800px) {
-      .timeline::before { left: 12px; }
-      .timeline-item { grid-template-columns: 1fr; }
-      .timeline-dot { left: 6px; }
-      .timeline-left, .timeline-right { grid-column: 1 / -1; }
+      .timeline::before { display: none; }
+      .timeline-item { grid-template-columns: 1fr; margin-bottom: 16px; }
+      .timeline-dot { display: none; }
+      .timeline-item:nth-child(odd) .timeline-left,
+      .timeline-item:nth-child(even) .timeline-left { grid-column: 1 / -1; }
+      .timeline-item:nth-child(odd) .timeline-right,
+      .timeline-item:nth-child(even) .timeline-right { display: none; }
+      .timeline-card { padding: 16px; margin: 0; }
+      .timeline-card h4 { font-size: 16px; flex-wrap: wrap; gap: 6px; }
+      .timeline-card .meta-row { flex-wrap: wrap; gap: 8px; font-size: 13px; }
+      .timeline-card .badge-status { margin-left: 0; }
+    }
+    @media (max-width: 600px) {
+      .timeline-item { margin-bottom: 14px; }
+      .timeline-card { padding: 18px; border-radius: 14px; }
+      .timeline-card h4 { font-size: 16px; gap: 6px; margin-bottom: 8px; }
+      .timeline-card .badge-status { padding: 4px 10px; font-size: 11px; }
+      .timeline-card .company { grid-template-columns: 32px 1fr; gap: 10px; }
+      .timeline-card .company-logo { width: 30px; height: 30px; }
+      .timeline-card .company strong { font-size: 14px; display: block; margin-bottom: 4px; }
+      .timeline-card .meta-row { flex-direction: column; gap: 3px; align-items: flex-start; font-size: 13px; margin: 0 0 8px; }
+      .timeline-card .meta-row span { display: block; }
+      .timeline-card .badge.metric { margin-left: 0; margin-top: 6px; font-size: 11px; }
+      .timeline-card p { font-size: 14px; margin: 12px 0; line-height: 1.6; }
+      .timeline-card .badge-row { gap: 8px; margin-top: 12px; }
+      .timeline-card .badge { padding: 5px 10px; font-size: 11px; }
+    }
+    @media (max-width: 480px) {
+      .timeline::before { left: 10px; }
+      .timeline-dot { left: 4px; width: 12px; height: 12px; top: 30px; }
+      .timeline-card { padding: 16px; }
+      .timeline-card h4 { font-size: 15px; margin-bottom: 8px; }
+      .timeline-card .badge-status { padding: 3px 9px; font-size: 10px; }
+      .timeline-card .company { grid-template-columns: 28px 1fr; gap: 8px; }
+      .timeline-card .company-logo { width: 26px; height: 26px; border-radius: 5px; }
+      .timeline-card .company strong { font-size: 13px; }
+      .timeline-card .meta-row { font-size: 12px; gap: 2px; }
+      .timeline-card .badge.metric { font-size: 10px; padding: 3px 8px; }
+      .timeline-card p { font-size: 13.5px; line-height: 1.55; }
+      .timeline-card .badge { padding: 4px 9px; font-size: 10.5px; }
+      .timeline-card .badge-row { gap: 6px; }
+      .achievements li { font-size: 13px; }
     }
 
     /* Footer */
@@ -585,7 +623,7 @@
         <div>
            <h1><span class="name-top">Md. Nurul</span><span class="name-bottom accent">Amin</span></h1>
           <p class="subtitle">
-            Technical Project Manager with 2+ years of experience leading cross-functional teams to deliver complex software on time and within budget. Proficient in Agile methodologies, risk management, and stakeholder collaboration.
+            Project Manager with 3+ years of experience leading cross-functional teams to deliver complex software on time and within budget. Proficient in Agile methodologies, risk management, and stakeholder collaboration.
           </p>
 
           <div class="chips">
@@ -607,7 +645,7 @@
           <h3>Profile</h3>
           <div class="hero-metrics">
             <div class="metric">
-              <div class="value">2+</div>
+              <div class="value">3+</div>
               <div class="label">Years experience</div>
             </div>
             <div class="metric">
@@ -629,7 +667,7 @@
       <p class="subtitle">A brief overview of my focus and approach</p>
       <div class="panel">
         <p>
-          I’m MD. NURUL AMIN, a Technical Project Manager based in Dhaka, Bangladesh. I partner with engineering, QA, design, and stakeholders to align scope, timelines, and quality with business goals—driving delivery through Agile practices, risk management, and clear communication.
+          I’m MD. NURUL AMIN, a Project Manager based in Dhaka, Bangladesh. I partner with engineering, QA, design, and stakeholders to align scope, timelines, and quality with business goals—driving delivery through Agile practices, risk management, and clear communication.
         </p>
         <ul class="about-highlights">
           <li><strong>Outcome-driven delivery:</strong> ship on time with transparent scope, risks, and trade-offs.</li>
@@ -650,13 +688,13 @@
           <span class="timeline-dot" aria-hidden="true"></span>
           <div class="timeline-left">
             <div class="timeline-card">
-              <h4>Technical Project Manager <span class="badge-status">Current</span></h4>
+              <h4>Project Manager <span class="badge-status">Current</span></h4>
               <div class="company">
                 <img class="company-logo" src="assets/jouleslabs.jpg" alt="JoulesLabs logo" loading="lazy" decoding="async" />
                 <div>
                   <strong>JoulesLabs</strong>
                   <div class="meta-row">
-                    <span>Feb 2022 - Present</span>
+                    <span>Nov 2023 - Present</span>
                     <span>Mirpur DOHS, Dhaka</span>
                     <span class="badge metric" style="margin-left:auto;">SaaS & Mobile</span>
                   </div>
