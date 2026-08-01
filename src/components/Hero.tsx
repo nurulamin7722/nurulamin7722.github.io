@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, ArrowDown, ExternalLink } from 'lucide-react';
+import { Mail, ArrowDown } from 'lucide-react';
 import './Hero.css';
 
 const Linkedin = ({ size = 18 }: { size?: number }) => (

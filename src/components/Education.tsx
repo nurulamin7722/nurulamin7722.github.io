@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calendar, MapPin, GraduationCap } from 'lucide-react';
+import { MapPin, GraduationCap } from 'lucide-react';
 import './Education.css';
 
 export const Education: React.FC = () => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Briefcase, ArrowDown, MapPin } from 'lucide-react';
+import { Briefcase, ArrowDown } from 'lucide-react';
 import './Experience.css';
 
 export const Experience: React.FC = () => {
