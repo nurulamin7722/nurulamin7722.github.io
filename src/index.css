@@ -1,0 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  /* Tailwind Spotlight - Light Mode Canvas variables */
+  --bg-outer: #f4f4f5; /* zinc-100 */
+  --bg-inner: #ffffff;
+  --text: #27272a; /* zinc-800 */
+  --text-heading: #18181b; /* zinc-900 */
+  --muted: #71717a; /* zinc-500 */
+  --border: #e4e4e7; /* zinc-200 */
+  
+  /* Teal-500 */
+  --brand: #14b8a6;
+  --brand-light: #2dd4bf;
+  
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --container-width: 1024px;
+  --header-height: 88px;
+  --radius-xl: 24px;
+  --radius-lg: 16px;
+  --radius-md: 8px;
+}
+
+.theme-dark {
+  /* Tailwind Spotlight - Dark Mode Canvas variables */
+  --bg-outer: #09090b; /* zinc-950 */
+  --bg-inner: #18181b; /* zinc-900 */
+  --text: #d4d4d8; /* zinc-300 */
+  --text-heading: #f4f4f5; /* zinc-100 */
+  --muted: #a1a1aa; /* zinc-400 */
+  --border: #27272a; /* zinc-800 */
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height);
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-outer);
+  color: var(--text);
+  line-height: 1.65;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Page architecture */
+.page-outer-wrapper {
+  background-color: var(--bg-outer);
+  width: 100%;
+  min-height: 100vh;
+}
+
+.page-inner-sheet {
+  background-color: var(--bg-inner);
+  max-width: var(--container-width);
+  margin: 0 auto;
+  min-height: 100vh;
+  box-shadow: 0 0 0 1px var(--border);
+  padding: 0 24px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 16px;
+}
+
+/* Typography elements */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  color: var(--text-heading);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+section {
+  padding: 80px 0 40px;
+}
+
+.section-header {
+  margin-bottom: 32px;
+}
+
+.section-title {
+  font-size: clamp(26px, 5vw, 32px);
+  font-weight: 800;
+  color: var(--text-heading);
+  letter-spacing: -0.02em;
+}
+
+.section-subtitle {
+  color: var(--muted);
+  font-size: 14px;
+  margin-top: 8px;
+  line-height: 1.6;
+}
+
+/* Universal Button styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  font-weight: 500;
+  font-size: 13.5px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 0;
+  font-family: var(--font-sans);
+}
+
+.btn-primary {
+  background: #27272a; /* zinc-800 */
+  color: #f4f4f5; /* zinc-100 */
+}
+
+.theme-dark .btn-primary {
+  background: #f4f4f5;
+  color: #18181b;
+}
+
+.btn-primary:hover {
+  background: #18181b;
+}
+
+.theme-dark .btn-primary:hover {
+  background: #ffffff;
+}
+
+.btn-secondary {
+  background: #f4f4f5; /* zinc-100 */
+  color: #27272a; /* zinc-800 */
+  border: 1px solid #e4e4e7;
+}
+
+.theme-dark .btn-secondary {
+  background: #27272a;
+  color: #d4d4d8;
+  border-color: #3f3f46;
+}
+
+.btn-secondary:hover {
+  background: #e4e4e7;
+}
+
+.theme-dark .btn-secondary:hover {
+  background: #3f3f46;
+}
+
+/* Scroll Top Button */
+.scroll-top-btn {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 999;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--bg-inner);
+  border: 1px solid var(--border);
+  color: var(--text-heading);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.scroll-top-btn.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.scroll-top-btn:hover {
+  border-color: var(--text-heading);
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: var(--brand);
+  color: #ffffff;
+  padding: 10px 20px;
+  z-index: 9999;
+  transition: top 0.2s;
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+@media (min-width: 1024px) {
+  .page-inner-sheet {
+    padding: 0 48px;
+  }
+}

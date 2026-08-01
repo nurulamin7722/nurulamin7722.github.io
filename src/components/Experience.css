@@ -1,0 +1,144 @@
+.experience-section {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.experience-grid-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+  align-items: flex-start;
+}
+
+.experience-info-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.experience-lead-text {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--text-heading);
+  margin-bottom: 18px;
+  letter-spacing: -0.01em;
+}
+
+.experience-body-text {
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.experience-body-text.muted-p {
+  color: var(--muted);
+}
+
+/* Spotlight Work Card on Right */
+.experience-card-col {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.work-card-spotlight {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  background: var(--bg-inner);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.01);
+  transition: all 0.2s ease;
+}
+
+.work-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-heading);
+}
+
+.work-card-icon {
+  color: var(--muted);
+}
+
+.work-card-title {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.work-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.work-item-row {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.work-company-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  background: var(--bg-inner);
+  padding: 2px;
+  flex-shrink: 0;
+}
+
+.work-item-details {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.work-company {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-heading);
+}
+
+.work-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 13px;
+  gap: 8px;
+}
+
+.work-role {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.work-period {
+  color: var(--muted);
+  flex-shrink: 0;
+}
+
+.work-desc-text {
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+.work-cv-btn {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .experience-grid-layout {
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 64px;
+  }
+}
